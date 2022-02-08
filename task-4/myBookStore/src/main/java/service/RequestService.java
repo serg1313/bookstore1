@@ -1,4 +1,4 @@
-package main.java.service;
+package service;
 
 
 import main.java.model.Request;
@@ -43,10 +43,5 @@ public interface RequestService {
      */
     int sortRequestBookById(long idBook);
 
-    /**
-     * вернуть количество запросов на книгу по ее названию
-     * @param nameBook
-     * @return
-     */
     int sortRequestBookByName(String nameBook);
 }

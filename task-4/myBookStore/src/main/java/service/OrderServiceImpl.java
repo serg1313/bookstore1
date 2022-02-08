@@ -1,4 +1,4 @@
-package main.java.service;
+package service;
 
 
 import main.java.model.Book;
@@ -10,9 +10,7 @@ import main.java.repository.CustomerRepository;
 import main.java.repository.OrderRepository;
 
 import java.time.LocalDate;
-import java.time.chrono.ChronoLocalDate;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -87,7 +85,9 @@ public class OrderServiceImpl implements OrderService {
             if (book != null) {
                 summ += book.getPrice();
             }
+            System.out.println(book);
         }
+        System.out.println(summ);
         return summ;
     }
 
@@ -105,6 +105,7 @@ public class OrderServiceImpl implements OrderService {
                     System.out.println("заказа нет");
                     break;
                 }
+                System.out.println(book);
             }
             System.out.println("сумма заказ " + idOrder + " равна " + summ);
             return summ;
@@ -116,51 +117,30 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void sortOrderByPrice(List<Order> orders) {
-        List<Order> orders1 = orders;
-        orders1.sort((o1, o2) -> (int) (getPriceOfSoldBooksByOrder(o1) - getPriceOfSoldBooksByOrder(o2)));
-        for (Order order : orders) {
-            System.out.println("Заказ № " + order.getId() + " сумма заказа: " + getPriceOfSoldBooksByOrder(order));
-        }
+    public List<Order> sortOrderByPrice(List<Order> orders) {
+        return null;
     }
 
     @Override
     public void getInfoOrder(long id) {
-
         List<Book> list = getBookByOrder(id);
-
         if (list != null) {
-            List<String> info = list.stream()
-                    .map(book -> " Название книги - " +
-                            book.getNameBook() + ", автор книги - " +
-                            book.getAuthorBook() + ", цена книги - " +
-                            book.getPrice())
-                    .collect(Collectors.toList());
+            List<String> info = list.stream().map(book -> " Название книги - " + book.getNameBook() + ", автор книги - " + book.getAuthorBook() + ", цена книги - " + book.getPrice()).collect(Collectors.toList());
             String nameCustomer = "null";
             int ageCustomer = 0;
             double summ = 0;
-            Order order = orderRepository.getOrderById(id);
-            Customer customer = customerRepository.getCustomerById(order.getIdCustomer());
-            nameCustomer = customer.getName();
-            ageCustomer = customer.getAge();
-
-            summ = getPriceOfSoldBooksByOrderId(id);
-
-            System.out.println("Имя покупателя - " + nameCustomer +
-                    "\nВозраст покупателя - " + ageCustomer +
-                    "\nприобретенные книги -" + info +
-                    "\nОбщая сумму покупки - " + summ);
+            for (Order order : orderRepository.getOrders()) {
+                if (order != null) {
+                    for (Customer customer : customerRepository.getCustomers()) {
+                        nameCustomer = customer.getName();
+                        ageCustomer = customer.getAge();
+                    }
+                    summ = getPriceOfSoldBooksByOrder(order);
+                }
+            }
+            System.out.println("Имя покупателя - " + nameCustomer + "\nВозраст покупателя - " + ageCustomer +
+                    "\nприобретенные книги -" + info + "\nОбщая сумму покупки - " + summ);
         }
-    }
-
-    @Override
-    public List<Order> getOrderListByPeriod(LocalDate dateStart, LocalDate dateEnd) {
-        List<Order> result= orderRepository.getOrders().stream()
-                .filter(order -> order.getOrderStatus().equals(OrderStatus.COMPLETED))
-                .filter(order -> order.getCompleteDate().isAfter(dateStart))
-                .filter(order -> order.getCompleteDate().isBefore(dateEnd))
-                .collect(Collectors.toList());
-        return result;
     }
 
     @Override
@@ -172,7 +152,7 @@ public class OrderServiceImpl implements OrderService {
                 Book b;
                 b = bookRepository.getBookById(book);
                 bookList.add(b);
-                //System.out.println(" в заказе № " + order.getId() + " имеется книга " + b.getNameBook());
+                System.out.println(" в заказе № " + order.getId() + " имеется книга " + b.getNameBook());
             }
             return bookList;
         }

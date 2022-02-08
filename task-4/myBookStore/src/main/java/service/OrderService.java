@@ -1,4 +1,4 @@
-package main.java.service;
+package service;
 
 
 import main.java.model.Book;
@@ -35,6 +35,7 @@ public interface OrderService {
 
     /**
      * получить общую стоимость одного заказа
+     *
      * @param order по которому считается стоимость
      * @return сумму проданных книг в данном заказе
      */
@@ -72,26 +73,11 @@ public interface OrderService {
      */
     List<Order> sortOrderByStatus(List<Order> orders);
 
-    /**
-     * Сортирурет список заказов по общей стоимости
-     * @param orders
-     */
-    void sortOrderByPrice(List<Order> orders);
+    List<Order> sortOrderByPrice(List<Order> orders);
 
-    /**
-     * Получить название книг из заказа
-     * @param idOrder
-     * @return
-     */
     List<Book> getBookByOrder(long idOrder);
 
-    /**
-     * получить название книги, автора книги, цену книги, имя покупателя и его возраст
-     * @param id
-     */
     void getInfoOrder(long id);
-
-    List <Order> getOrderListByPeriod(LocalDate dateStart, LocalDate dateEnd);
 
 
 }
