@@ -11,5 +11,6 @@ public class testMain {
         System.out.println(r);
 
         System.out.println("цена букета равна " + b1.getPrice());
+
     }
 }

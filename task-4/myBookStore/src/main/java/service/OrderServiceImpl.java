@@ -117,8 +117,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> sortOrderByPrice(List<Order> orders) {
-        return null;
+    public void sortOrderByPrice(List<Order> orders) {
+        List<Order> orders1 = orders;
+        orders1.sort((o1, o2) -> (int) (getPriceOfSoldBooksByOrder(o1) - getPriceOfSoldBooksByOrder(o2)));
+        for (Order order : orders) {
+            System.out.println("Заказ № " + order.getId() + " сумма заказа: " + getPriceOfSoldBooksByOrder(order));
+        }
     }
 
     @Override
@@ -141,6 +145,16 @@ public class OrderServiceImpl implements OrderService {
             System.out.println("Имя покупателя - " + nameCustomer + "\nВозраст покупателя - " + ageCustomer +
                     "\nприобретенные книги -" + info + "\nОбщая сумму покупки - " + summ);
         }
+    }
+
+    @Override
+    public List<Order> getOrderListByPeriod(LocalDate dateStart, LocalDate dateEnd) {
+        List<Order> result= orderRepository.getOrders().stream()
+                .filter(order -> order.getOrderStatus().equals(OrderStatus.COMPLETED))
+                .filter(order -> order.getCompleteDate().isAfter(dateStart))
+                .filter(order -> order.getCompleteDate().isBefore(dateEnd))
+                .collect(Collectors.toList());
+        return result;
     }
 
     @Override

@@ -11,7 +11,7 @@ public class Order extends BaseEntity {
     private OrderStatus orderStatus;
     private long idCustomer;
     private LocalDate orderDate;
-    private LocalDate completeDate = LocalDate.now();
+    private LocalDate completeDate;
     private double sumOrder;
 
     public Order(LocalDate orderDate, long idCustomer, long[] bookId) {
