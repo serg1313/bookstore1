@@ -1,7 +1,7 @@
 package repository;
 
 
-import main.java.model.Request;
+import model.Request;
 
 import java.util.List;
 

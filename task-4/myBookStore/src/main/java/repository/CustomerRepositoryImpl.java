@@ -1,7 +1,7 @@
 package repository;
 
 
-import main.java.model.Customer;
+import model.Customer;
 
 import java.util.ArrayList;
 import java.util.List;

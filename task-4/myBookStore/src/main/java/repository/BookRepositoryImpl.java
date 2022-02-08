@@ -1,7 +1,7 @@
 package repository;
 
 
-import main.java.model.Book;
+import model.Book;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

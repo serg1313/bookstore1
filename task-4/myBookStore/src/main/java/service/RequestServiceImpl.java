@@ -1,11 +1,11 @@
 package service;
 
 
-import main.java.model.Book;
-import main.java.model.Request;
-import main.java.model.RequestStatus;
-import main.java.repository.BookRepository;
-import main.java.repository.RequestRepository;
+import model.Book;
+import model.Request;
+import model.RequestStatus;
+import repository.BookRepository;
+import repository.RequestRepository;
 
 import java.time.LocalDate;
 import java.util.List;

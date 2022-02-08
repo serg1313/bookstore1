@@ -1,8 +1,8 @@
 package repository;
 
 
-import main.java.model.Book;
-import main.java.model.Order;
+import model.Book;
+import model.Order;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

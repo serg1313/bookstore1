@@ -126,7 +126,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void getInfoOrder(long id) {
+
         List<Book> list = getBookByOrder(id);
+
         if (list != null) {
             List<String> info = list.stream()
                     .map(book -> " Название книги - " +
@@ -141,7 +143,9 @@ public class OrderServiceImpl implements OrderService {
             Customer customer = customerRepository.getCustomerById(order.getIdCustomer());
             nameCustomer = customer.getName();
             ageCustomer = customer.getAge();
+
             summ = getPriceOfSoldBooksByOrderId(id);
+
             System.out.println("Имя покупателя - " + nameCustomer +
                     "\nВозраст покупателя - " + ageCustomer +
                     "\nприобретенные книги -" + info +
@@ -153,8 +157,8 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> getOrderListByPeriod(LocalDate dateStart, LocalDate dateEnd) {
         List<Order> result= orderRepository.getOrders().stream()
                 .filter(order -> order.getOrderStatus().equals(OrderStatus.COMPLETED))
-                .filter(order -> order.getCompleteDate().isAfter(dateStart))
                 .filter(order -> order.getCompleteDate().isBefore(dateEnd))
+                .filter(order -> order.getCompleteDate().isAfter(dateStart))
                 .collect(Collectors.toList());
         return result;
     }
@@ -168,7 +172,8 @@ public class OrderServiceImpl implements OrderService {
                 Book b;
                 b = bookRepository.getBookById(book);
                 bookList.add(b);
-                            }
+                //System.out.println(" в заказе № " + order.getId() + " имеется книга " + b.getNameBook());
+            }
             return bookList;
         }
         System.out.println("данного заказа нет");

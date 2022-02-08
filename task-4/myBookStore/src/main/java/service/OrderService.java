@@ -1,9 +1,11 @@
 package service;
 
 
-import main.java.model.Book;
-import main.java.model.Order;
-import main.java.model.OrderStatus;
+
+
+import model.Book;
+import model.Order;
+import model.OrderStatus;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -31,7 +33,7 @@ public interface OrderService {
      * @param orderId
      * @param orderStatus статус на который изменить
      */
-    void changeOrder(long orderId, OrderStatus orderStatus);
+    void changeOrder(long orderId, OrderStatus orderStatus, LocalDate localDate);
 
     /**
      * получить общую стоимость одного заказа
@@ -74,25 +76,24 @@ public interface OrderService {
     List<Order> sortOrderByStatus(List<Order> orders);
 
     /**
-     * Сортирурет список заказов по общей стоимости
+     * сортировка списка заказов по цене
      * @param orders
      */
     void sortOrderByPrice(List<Order> orders);
 
     /**
-     * Получить название книг из заказа
+     * получить список книг в конкретном заказе
      * @param idOrder
-     * @return
      */
     List<Book> getBookByOrder(long idOrder);
 
     /**
-     * получить название книги, автора книги, цену книги, имя покупателя и его возраст
+     * получить информацию из заказа о покупателе, книгах и сумме заказа
      * @param id
      */
     void getInfoOrder(long id);
 
-    List <Order> getOrderListByPeriod(LocalDate dateStart, LocalDate dateEnd);
+    public List<Order> getOrderListByPeriod(LocalDate dateStart, LocalDate dateEnd);
 
 
 }

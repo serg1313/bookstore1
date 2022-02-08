@@ -1,8 +1,7 @@
 package service;
 
 
-import main.java.model.Request;
-
+import model.Request;
 
 public interface RequestService {
     /**

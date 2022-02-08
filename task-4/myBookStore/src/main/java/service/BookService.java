@@ -1,7 +1,7 @@
 package service;
 
 
-import main.java.model.Book;
+import model.Book;
 
 import java.util.List;
 
