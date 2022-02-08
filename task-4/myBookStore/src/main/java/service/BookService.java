@@ -69,4 +69,12 @@ public interface BookService {
      */
     void addNewBookInRepository(Book book);
 
+    /**
+     * получить общее количество книг на складе
+     * @return
+     */
+    int getCountBookByRepository();
+
+    void sortingBookById(List<Book> bookList);
+
 }

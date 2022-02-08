@@ -93,7 +93,20 @@ public interface OrderService {
      */
     void getInfoOrder(long id);
 
+    /**
+     * сортировка выполненных заказов за указанный период
+     * @param dateStart
+     * @param dateEnd
+     * @return
+     */
     public List<Order> getOrderListByPeriod(LocalDate dateStart, LocalDate dateEnd);
 
+    /**
+     * сортировка выполненных заказов за указанный период по сумме заказа
+     * @param dateStart
+     * @param dateEnd
+     * @return
+     */
+    List<Order> getOrderListCompletedByPrice(LocalDate dateStart, LocalDate dateEnd);
 
 }

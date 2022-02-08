@@ -79,10 +79,10 @@ public class BookRepositoryImpl implements BookRepository {
     }
 
     public void addNewBookInRepository(Book book) {
-        for (Book book1 : books) {
-            if (book1.getNameBook() != book.getNameBook() && book1.getAuthorBook() != book.getAuthorBook() && book1.getYearOfPublic() != book.getYearOfPublic() && book.getStatusBook() == false) {
-                books.add(new Book(book));
+        //Book book1=book;
+        //for (Book b : getBooks()) {
+            //if (b.getNameBook() != book1.getNameBook() && b.getAuthorBook() != book1.getAuthorBook() && b.getYearOfPublic() != book1.getYearOfPublic() && b.getStatusBook() == true) {
+                books.add(book);
             }
-        }
-    }
+
 }

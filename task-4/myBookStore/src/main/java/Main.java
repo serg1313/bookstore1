@@ -30,7 +30,7 @@ public class Main {
         //создать заказ
         orderService.createOrder(LocalDate.of(2022, 2, 2), 8, new long[]{6, 8, 7, 11});
         orderService.createOrder(LocalDate.of(2022, 2, 2), 4, new long[]{6, 8, 7, 11});
-        orderService.changeOrder(6, OrderStatus.CANCELLED, LocalDate.of(2022,01,15));
+        orderService.changeOrder(6, OrderStatus.CANCELLED, LocalDate.of(2022, 01, 15));
         for (Order order : orderRepository.getOrders()) {
             System.out.println(order.getId() + " " + order.getOrderStatus() + " " + Arrays.toString(order.getBookId()));
         }
@@ -43,7 +43,7 @@ public class Main {
         }
         System.out.println();
         //изменить заказ
-        orderService.changeOrder(0, OrderStatus.COMPLETED, LocalDate.of(2021,2,19));
+        orderService.changeOrder(0, OrderStatus.COMPLETED, LocalDate.of(2021, 2, 19));
         for (Order order : orderRepository.getOrders()) {
             System.out.println(order.getId() + " " + order.getOrderStatus() + " " + Arrays.toString(order.getBookId()));
         }
@@ -127,7 +127,7 @@ public class Main {
         }
 
         orderService.getPriceOfSoldBooksByOrderId(1);
-        orderService.changeOrder(4, OrderStatus.COMPLETED, LocalDate.of(2021,5,12));
+        orderService.changeOrder(4, OrderStatus.COMPLETED, LocalDate.of(2021, 5, 12));
         System.out.println(orderRepository.getOrderById(5));
 
         for (Order order : orderRepository.getOrders()) {
@@ -157,12 +157,12 @@ public class Main {
         orderService.createOrder(LocalDate.now(), 5, new long[]{5, 8, 9, 11, 15, 3, 4});
         orderService.createOrder(LocalDate.now(), 5, new long[]{5, 8, 9, 11, 15, 3, 4});
         orderService.createOrder(LocalDate.now(), 5, new long[]{5, 8, 9, 11, 15, 3, 4});
-        orderService.changeOrder(4, OrderStatus.COMPLETED, LocalDate.of(2021,6,26));
-        orderService.changeOrder(5, OrderStatus.CANCELLED, LocalDate.of(2021,7,25));
-        orderService.changeOrder(6, OrderStatus.COMPLETED, LocalDate.of(2021,8,24));
-        orderService.changeOrder(7, OrderStatus.CANCELLED, LocalDate.of(2021,9,23));
-        orderService.changeOrder(8, OrderStatus.COMPLETED, LocalDate.of(2021,10,22));
-        orderService.changeOrder(9, OrderStatus.CANCELLED, LocalDate.of(2021,11,21));
+        orderService.changeOrder(4, OrderStatus.COMPLETED, LocalDate.of(2021, 6, 26));
+        orderService.changeOrder(5, OrderStatus.CANCELLED, LocalDate.of(2021, 7, 25));
+        orderService.changeOrder(6, OrderStatus.COMPLETED, LocalDate.of(2021, 8, 24));
+        orderService.changeOrder(7, OrderStatus.CANCELLED, LocalDate.of(2021, 9, 23));
+        orderService.changeOrder(8, OrderStatus.COMPLETED, LocalDate.of(2021, 10, 22));
+        orderService.changeOrder(9, OrderStatus.CANCELLED, LocalDate.of(2021, 11, 21));
 
         orderService.sortOrderByStatus(orderRepository.getOrders());
         for (Order order : orderRepository.getOrders()) {
@@ -180,9 +180,36 @@ public class Main {
             System.out.println(order);
         }
         System.out.println();
-        for(Order order:orderService.getOrderListByPeriod(LocalDate.of(2021,1,11), LocalDate.of(2022,1,10))){
+
+        //сортировка выполненных заказов за период времени
+        for (Order order : orderService.getOrderListByPeriod(LocalDate.of(2021, 1, 11), LocalDate.of(2022, 1, 10))) {
             System.out.println(order);
         }
+        System.out.println();
+
+        //сортировка выполненных заказов за период времени по сумме заказа
+        for (Order order : orderService.getOrderListCompletedByPrice(LocalDate.of(2021, 1, 11), LocalDate.of(2022, 1, 10))) {
+            System.out.println(order + " сумма заказа = " + orderService.getPriceOfSoldBooksByOrderId(order.getId()));
+        }
+        System.out.println();
+
+        // сортировка книг по наименованию
+        bookService.sortingBookByName(bookRepository.getBooks());
+        System.out.println();
+
+        //получить общее количество книг со статусом в наличии
+        System.out.println(bookService.getCountBookByRepository());
+
+        // добавить новую книгу на склад
+        bookRepository.addNewBookInRepository(new Book("Темная башня", "Стивен Кинг", 2012, 1013, true, LocalDate.of(2022, 2, 8)));
+        System.out.println();
+
+        //получить общее количество книг со статусом в наличии
+        System.out.println(bookService.getCountBookByRepository());
+        System.out.println();
+
+       // отсортировать книги по id
+        bookService.sortingBookById(bookRepository.getBooks());
 
     }
     // write your code here

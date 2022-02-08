@@ -107,7 +107,7 @@ public class OrderServiceImpl implements OrderService {
                     break;
                 }
             }
-            System.out.println("сумма заказ " + idOrder + " равна " + summ);
+            //System.out.println("сумма заказ " + idOrder + " равна " + summ);
             return summ;
         } catch (NullPointerException e) {
             //e.printStackTrace();
@@ -158,6 +158,17 @@ public class OrderServiceImpl implements OrderService {
                 .filter(order -> order.getCompleteDate().isBefore(dateEnd))
                 .collect(Collectors.toList());
         result.sort(Comparator.comparing(Order::getCompleteDate));
+        return result;
+    }
+
+    @Override
+    public List<Order> getOrderListCompletedByPrice(LocalDate dateStart, LocalDate dateEnd) {
+        List<Order> result = orderRepository.getOrders().stream()
+                .filter(order -> order.getOrderStatus().equals(OrderStatus.COMPLETED))
+                .filter(order -> order.getCompleteDate().isAfter(dateStart))
+                .filter(order -> order.getCompleteDate().isBefore(dateEnd))
+                .collect(Collectors.toList());
+        result.sort((o1, o2) -> (int) (getPriceOfSoldBooksByOrderId(o1.getId())-getPriceOfSoldBooksByOrderId(o2.getId())));
         return result;
     }
 

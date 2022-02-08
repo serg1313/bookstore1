@@ -5,6 +5,7 @@ import model.Book;
 import repository.BookRepository;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class BookServiceImpl implements BookService {
@@ -43,6 +44,8 @@ public class BookServiceImpl implements BookService {
         Book book = bookRepository.getBookById(id);
         if (bookRepository.getBookById(id) == null) {
             System.out.println("книга не найдена");
+        } else if (bookRepository.getBookById(id).getStatusBook() != true) {
+            System.out.println("книга на складе имеется");
         } else {
             requestService.canceledRequestByBookId(id);
             bookRepository.addBook(book);
@@ -155,6 +158,25 @@ public class BookServiceImpl implements BookService {
             if (book1.getNameBook() != b.getNameBook() && book1.getAuthorBook() != b.getAuthorBook() && book1.getYearOfPublic() != b.getYearOfPublic() && b.getStatusBook() == false) {
                 bookRepository.addBook(b);
             }
+        }
+    }
+
+    @Override
+    public int getCountBookByRepository() {
+        int count = 0;
+        for (Book book : bookRepository.getBooks()) {
+            if (book.getStatusBook() == true) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    @Override
+    public void sortingBookById(List<Book> bookList) {
+        bookList.sort((o1, o2) -> (int) (o1.getId()-o2.getId()));
+        for (Book book : bookList) {
+            System.out.println(book);
         }
     }
 }
