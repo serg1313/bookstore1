@@ -7,6 +7,7 @@ import service.*;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
 
@@ -210,6 +211,7 @@ public class Main {
 
        // отсортировать книги по id
         bookService.sortingBookById(bookRepository.getBooks());
+
 
     }
     // write your code here
