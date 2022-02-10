@@ -1,7 +1,4 @@
-package model;
-
-import main.java.model.BaseEntity;
-import main.java.model.RequestStatus;
+package main.java.model;
 
 public class Request extends BaseEntity {
     private static long id = 0;

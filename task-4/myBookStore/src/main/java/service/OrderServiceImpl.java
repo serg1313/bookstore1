@@ -1,13 +1,12 @@
-package service;
+package main.java.service;
 
-
-import model.Book;
-import model.Customer;
-import model.Order;
-import model.OrderStatus;
-import repository.BookRepository;
-import repository.CustomerRepository;
-import repository.OrderRepository;
+import main.java.model.Book;
+import main.java.model.Customer;
+import main.java.model.Order;
+import main.java.model.OrderStatus;
+import main.java.repository.BookRepository;
+import main.java.repository.CustomerRepository;
+import main.java.repository.OrderRepository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -48,7 +47,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void cancelOrder(long orderId) {
         for (Order o : orderRepository.getOrders()) {
-            if (o.getId() == orderId && (o.getOrderStatus() == OrderStatus.NEW || o.getOrderStatus() == OrderStatus.COMPLETED)) {
+            if (o.getId() == orderId && (o.getOrderStatus().equals(OrderStatus.NEW) || o.getOrderStatus().equals(OrderStatus.COMPLETED))) {
                 o.setOrderStatus(OrderStatus.CANCELLED);
                 System.out.println("статус заказа № " + orderId + " закрыт.");
                 break;
@@ -107,10 +106,8 @@ public class OrderServiceImpl implements OrderService {
                     break;
                 }
             }
-            //System.out.println("сумма заказ " + idOrder + " равна " + summ);
             return summ;
         } catch (NullPointerException e) {
-            //e.printStackTrace();
             System.out.println("данного заказа нет в наличии");
         }
         return summ;
@@ -168,7 +165,7 @@ public class OrderServiceImpl implements OrderService {
                 .filter(order -> order.getCompleteDate().isAfter(dateStart))
                 .filter(order -> order.getCompleteDate().isBefore(dateEnd))
                 .collect(Collectors.toList());
-        result.sort((o1, o2) -> (int) (getPriceOfSoldBooksByOrderId(o1.getId())-getPriceOfSoldBooksByOrderId(o2.getId())));
+        result.sort((o1, o2) -> (int) (getPriceOfSoldBooksByOrderId(o1.getId()) - getPriceOfSoldBooksByOrderId(o2.getId())));
         return result;
     }
 

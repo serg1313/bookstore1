@@ -1,7 +1,6 @@
-package repository;
+package main.java.repository;
 
-
-import model.Customer;
+import main.java.model.Customer;
 
 import java.util.ArrayList;
 import java.util.List;

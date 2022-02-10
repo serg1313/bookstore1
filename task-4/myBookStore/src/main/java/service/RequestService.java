@@ -1,7 +1,9 @@
-package service;
+package main.java.service;
 
+import main.java.model.Request;
 
 public interface RequestService {
+
     /**
      * создатьзапрос на книгу по автору и названию книги
      *
@@ -40,5 +42,10 @@ public interface RequestService {
      */
     int sortRequestBookById(long idBook);
 
+    /**
+     * сортировать запросы по имени книги
+     * @param nameBook
+     * @return
+     */
     int sortRequestBookByName(String nameBook);
 }

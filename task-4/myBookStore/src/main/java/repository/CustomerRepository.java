@@ -1,11 +1,11 @@
-package repository;
+package main.java.repository;
 
-
-import model.Customer;
+import main.java.model.Customer;
 
 import java.util.List;
 
 public interface CustomerRepository {
+
     /**
      * возвращает список покупателей
      *
@@ -13,5 +13,10 @@ public interface CustomerRepository {
      */
     List<Customer> getCustomers();
 
+    /**
+     * получить покупателя по id
+     * @param Id
+     * @return
+     */
     Customer getCustomerById(long Id);
 }

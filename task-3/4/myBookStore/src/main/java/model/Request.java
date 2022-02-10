@@ -1,7 +1,5 @@
 package main.java.model;
 
-import model.Book;
-
 public class Request extends BaseEntity {
     private static long id = 0;
     private Book book;

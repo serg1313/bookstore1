@@ -1,6 +1,7 @@
 package main.java.repository;
 
 
+
 import main.java.model.Book;
 import main.java.model.Request;
 import main.java.model.RequestStatus;
@@ -17,8 +18,8 @@ public class RequestRepositoryImpl implements RequestRepository {
     }
 
     private void initRequest() {
-        requests.add(new Request(new Book
-                ("Иван царевич", "народ", 0, 0, true, LocalDate.of(2022, 2, 1)), RequestStatus.NEW));
+        requests.add(new Request
+                (new Book("Иван царевич", "народ", 0, 0, true, LocalDate.of(2022, 2, 1)), RequestStatus.NEW));
     }
 
     /**

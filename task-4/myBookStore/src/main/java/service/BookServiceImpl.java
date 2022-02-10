@@ -1,11 +1,9 @@
-package service;
+package main.java.service;
 
-
-import model.Book;
-import repository.BookRepository;
+import main.java.model.Book;
+import main.java.repository.BookRepository;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class BookServiceImpl implements BookService {

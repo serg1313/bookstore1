@@ -5,9 +5,9 @@ import main.java.model.Book;
 import main.java.model.Customer;
 import main.java.model.Order;
 
+import main.java.model.OrderStatus;
 import main.java.repository.BookRepository;
 import main.java.repository.OrderRepository;
-import model.OrderStatus;
 import main.java.repository.CustomerRepository;
 
 import java.time.LocalDate;
@@ -48,7 +48,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void cancelOrder(long orderId) {
         for (Order o : orderRepository.getOrders()) {
-            if (o.getId() == orderId && (o.getOrderStatus() == OrderStatus.NEW || o.getOrderStatus() == OrderStatus.COMPLETED)) {
+            if (o.getId() == orderId && (o.getOrderStatus().equals(OrderStatus.NEW) || o.getOrderStatus().equals(OrderStatus.COMPLETED))) {
                 o.setOrderStatus(OrderStatus.CANCELLED);
                 System.out.println("статус заказа № " + orderId + " закрыт.");
                 break;

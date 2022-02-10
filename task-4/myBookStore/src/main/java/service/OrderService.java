@@ -1,16 +1,14 @@
-package service;
+package main.java.service;
 
-
-
-
-import model.Book;
-import model.Order;
-import model.OrderStatus;
+import main.java.model.Book;
+import main.java.model.Order;
+import main.java.model.OrderStatus;
 
 import java.time.LocalDate;
 import java.util.List;
 
 public interface OrderService {
+
     /**
      * Создать заказ на книги
      *

@@ -1,8 +1,5 @@
 package main.java.model;
 
-import org.springframework.stereotype.Component;
-
-
 public abstract class BaseEntity {
     private long id;
 

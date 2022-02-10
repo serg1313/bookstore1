@@ -1,6 +1,5 @@
 package main.java.model;
 
-import model.BaseEntity;
 
 import java.time.LocalDate;
 

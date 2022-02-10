@@ -1,10 +1,10 @@
-package service;
+package main.java.service;
 
-
-import model.Book;
-import model.RequestStatus;
-import repository.BookRepository;
-import repository.RequestRepository;
+import main.java.model.Book;
+import main.java.model.Request;
+import main.java.model.RequestStatus;
+import main.java.repository.BookRepository;
+import main.java.repository.RequestRepository;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -18,6 +18,7 @@ public class RequestServiceImpl implements RequestService {
         this.bookRepository = bookRepository;
         this.requestRepository = requestRepository;
     }
+
     /**
      * создать запрос на книгу по ее id
      *

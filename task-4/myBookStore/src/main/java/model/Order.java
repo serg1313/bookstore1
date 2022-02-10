@@ -1,10 +1,9 @@
-package model;
+package main.java.model;
 
 import java.time.LocalDate;
 import java.util.Arrays;
 
 public class Order extends BaseEntity {
-
 
     public static long id = 0;
     private long[] bookId;

@@ -1,9 +1,8 @@
-package repository;
+package main.java.repository;
 
-
-import model.Book;
-import model.Request;
-import model.RequestStatus;
+import main.java.model.Book;
+import main.java.model.Request;
+import main.java.model.RequestStatus;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

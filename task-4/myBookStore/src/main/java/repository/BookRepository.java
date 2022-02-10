@@ -1,10 +1,6 @@
-package repository;
+package main.java.repository;
 
-
-
-
-
-import model.Book;
+import main.java.model.Book;
 
 import java.util.List;
 
@@ -31,5 +27,5 @@ public interface BookRepository {
      */
     void addBook(Book book);
 
-    public void addNewBookInRepository(Book book);
+    void addNewBookInRepository(Book book);
 }

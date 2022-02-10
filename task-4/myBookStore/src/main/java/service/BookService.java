@@ -1,7 +1,6 @@
-package service;
+package main.java.service;
 
-
-import model.Book;
+import main.java.model.Book;
 
 import java.util.List;
 
@@ -75,6 +74,10 @@ public interface BookService {
      */
     int getCountBookByRepository();
 
+    /**
+     * сортировка книг по id
+     * @param bookList
+     */
     void sortingBookById(List<Book> bookList);
 
 }

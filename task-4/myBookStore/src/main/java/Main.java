@@ -1,8 +1,11 @@
-import model.Book;
-import model.Order;
-import model.OrderStatus;
-import repository.*;
-import service.*;
+package main.java;
+
+import main.java.model.Book;
+import main.java.model.Order;
+import main.java.model.OrderStatus;
+import main.java.model.Request;
+import main.java.repository.*;
+import main.java.service.*;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -172,8 +175,8 @@ public class Main {
         System.out.println();
         orderService.getInfoOrder(5);
         System.out.println();
-//
-//        orderService.getPriceOfSoldBooksByOrder(new Order(LocalDate.now(),3, new long[]{3,5,9,8}));
+
+        orderService.getPriceOfSoldBooksByOrder(new Order(LocalDate.now(),3, new long[]{3,5,9,8}));
         orderService.changeOrder(1, OrderStatus.COMPLETED, LocalDate.of(2021, 10, 10));
         for (Order order : orderRepository.getOrders()) {
             System.out.println(order);
@@ -200,8 +203,9 @@ public class Main {
         System.out.println(bookService.getCountBookByRepository());
 
         // добавить новую книгу на склад
-        bookRepository.addNewBookInRepository(new Book("Темная башня", "Стивен Кинг", 2012, 1013, true, LocalDate.of(2022, 2, 8)));
+        //bookRepository.addNewBookInRepository(new Book("Темная башня", "Стивен Кинг", 2012, 1013, true, LocalDate.of(2022, 2, 8)));
         System.out.println();
+        //bookRepository.addNewBookInRepository(new Book("Оно", "Стивен Кинг", 2010, 950,true, LocalDate.of(2022,2,10)));
 
         //получить общее количество книг со статусом в наличии
         System.out.println(bookService.getCountBookByRepository());
@@ -212,6 +216,5 @@ public class Main {
 
 
     }
-    // write your code here
 
 }

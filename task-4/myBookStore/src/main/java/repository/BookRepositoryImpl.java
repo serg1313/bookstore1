@@ -1,7 +1,6 @@
-package repository;
+package main.java.repository;
 
-
-import model.Book;
+import main.java.model.Book;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -79,10 +78,16 @@ public class BookRepositoryImpl implements BookRepository {
     }
 
     public void addNewBookInRepository(Book book) {
-        //Book book1=book;
-        //for (Book b : getBooks()) {
-            //if (b.getNameBook() != book1.getNameBook() && b.getAuthorBook() != book1.getAuthorBook() && b.getYearOfPublic() != book1.getYearOfPublic() && b.getStatusBook() == true) {
-                books.add(book);
-            }
+//        Book book1 = book;
+//        for (Book b : getBooks()) {
+//            if ((!b.getNameBook().equals(book1.getNameBook()) &&
+//                    !b.getAuthorBook().equals(book1.getAuthorBook())) &&
+//                    b.getYearOfPublic() != book1.getYearOfPublic() &&
+//                    book1.getStatusBook() == true) {
+//                books.add(book);
+//            }
+//        }
+    }
 
 }
+
