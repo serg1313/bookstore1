@@ -4,15 +4,14 @@ package main.java.service;
 import main.java.model.Book;
 import main.java.model.Customer;
 import main.java.model.Order;
-import main.java.model.OrderStatus;
+
 import main.java.repository.BookRepository;
-import main.java.repository.CustomerRepository;
 import main.java.repository.OrderRepository;
+import model.OrderStatus;
+import main.java.repository.CustomerRepository;
 
 import java.time.LocalDate;
-import java.time.chrono.ChronoLocalDate;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 

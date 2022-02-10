@@ -1,11 +1,14 @@
 package model;
 
+import main.java.model.BaseEntity;
+import main.java.model.RequestStatus;
+
 public class Request extends BaseEntity {
     private static long id = 0;
     private Book book;
-    private RequestStatus requestStatus;
+    private main.java.model.RequestStatus requestStatus;
 
-    public Request(Book book, RequestStatus requestStatus) {
+    public Request(Book book, main.java.model.RequestStatus requestStatus) {
         super(id++);
         this.book = book;
         this.requestStatus = requestStatus;
@@ -19,7 +22,7 @@ public class Request extends BaseEntity {
         this.book = book;
     }
 
-    public RequestStatus getRequestStatus() {
+    public main.java.model.RequestStatus getRequestStatus() {
         return requestStatus;
     }
 

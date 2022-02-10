@@ -1,7 +1,13 @@
 package main.java.model;
 
+
+
+import model.OrderStatus;
+
 import java.time.LocalDate;
 import java.util.Arrays;
+
+
 
 public class Order extends BaseEntity {
 

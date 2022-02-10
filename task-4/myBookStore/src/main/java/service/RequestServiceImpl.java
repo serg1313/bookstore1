@@ -2,7 +2,6 @@ package service;
 
 
 import model.Book;
-import model.Request;
 import model.RequestStatus;
 import repository.BookRepository;
 import repository.RequestRepository;

@@ -1,8 +1,6 @@
 package service;
 
 
-import model.Request;
-
 public interface RequestService {
     /**
      * создатьзапрос на книгу по автору и названию книги

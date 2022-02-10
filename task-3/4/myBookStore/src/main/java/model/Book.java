@@ -1,5 +1,7 @@
 package main.java.model;
 
+import model.BaseEntity;
+
 import java.time.LocalDate;
 
 public class Book extends BaseEntity implements Comparable<Book> {
