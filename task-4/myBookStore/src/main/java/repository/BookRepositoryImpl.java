@@ -4,6 +4,7 @@ import main.java.model.Book;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class BookRepositoryImpl implements BookRepository {
@@ -22,7 +23,7 @@ public class BookRepositoryImpl implements BookRepository {
         books.add(new Book("Фальшивомонетчики", "Андре Жид", 2015, 451, true, LocalDate.of(2021, 5, 5)));
         books.add(new Book("Магазин древностей", "Чарльз Диккенс", 2020, 742, false, LocalDate.of(2021, 6, 5)));
         books.add(new Book("Чингис Хан", "Василий Ян", 2010, 544, true, LocalDate.of(2021, 7, 5)));
-        books.add(new Book("Мастер и Маргарита", "Михаил Булгагов", 2013, 855, true, LocalDate.of(2021, 8, 5)));
+        books.add(new Book("Мастер и Маргарита", "Михаил Булгагов", 2013, 855, true, LocalDate.of(2021, 1, 1)));
         books.add(new Book("Похититель Вечности", "Клайв Баркер", 2005, 456, true, LocalDate.of(2021, 9, 5)));
         books.add(new Book("Гарри Поттер", "Джоан Роулинг", 2017, 770, false, LocalDate.of(2021, 10, 5)));
         books.add(new Book("Код", "Изабелла Мальдонадо", 2019, 350, true, LocalDate.of(2021, 11, 5)));
@@ -77,16 +78,12 @@ public class BookRepositoryImpl implements BookRepository {
         }
     }
 
+    @Override
     public void addNewBookInRepository(Book book) {
-//        Book book1 = book;
-//        for (Book b : getBooks()) {
-//            if ((!b.getNameBook().equals(book1.getNameBook()) &&
-//                    !b.getAuthorBook().equals(book1.getAuthorBook())) &&
-//                    b.getYearOfPublic() != book1.getYearOfPublic() &&
-//                    book1.getStatusBook() == true) {
-//                books.add(book);
-//            }
-//        }
+        List<Book> bookList= getBooks();
+       if (!(bookList.contains(book))) {
+            bookList.add(book);
+        }
     }
 
 }

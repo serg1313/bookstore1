@@ -170,6 +170,22 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public double getSummEarnedMoneyByPeriod(LocalDate dateStart, LocalDate dateEnd) {
+        List<Order> result = orderRepository.getOrders().stream()
+                .filter(order -> order.getOrderStatus().equals(OrderStatus.COMPLETED))
+                .filter(order -> order.getCompleteDate().isAfter(dateStart))
+                .filter(order -> order.getCompleteDate().isBefore(dateEnd))
+                .collect(Collectors.toList());
+
+        double count = 0;
+        for (Order order : result) {
+            count += getPriceOfSoldBooksByOrder(order);
+        }
+
+        return count;
+    }
+
+    @Override
     public List<Book> getBookByOrder(long idOrder) {
         List<Book> bookList = new ArrayList<>();
         Order order = orderRepository.getOrderById(idOrder);

@@ -2,9 +2,15 @@ package main.java.service;
 
 import main.java.model.Book;
 import main.java.repository.BookRepository;
+import main.java.repository.BookRepositoryImpl;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BookServiceImpl implements BookService {
 
@@ -149,17 +155,6 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void addNewBookInRepository(Book book) {
-        //List<Book> list = bookRepository.getBooks();
-        Book b = book;
-        for (Book book1 : bookRepository.getBooks()) {
-            if (book1.getNameBook() != b.getNameBook() && book1.getAuthorBook() != b.getAuthorBook() && book1.getYearOfPublic() != b.getYearOfPublic() && b.getStatusBook() == false) {
-                bookRepository.addBook(b);
-            }
-        }
-    }
-
-    @Override
     public int getCountBookByRepository() {
         int count = 0;
         for (Book book : bookRepository.getBooks()) {
@@ -177,4 +172,43 @@ public class BookServiceImpl implements BookService {
             System.out.println(book);
         }
     }
+
+    @Override
+    public List<Book> sortByPriceListOfStaleBooksNotSold(List<Book> bookList, long periodOfMonths) {
+        bookList=bookRepository.getBooks().stream()
+                .filter(book -> book.getStatusBook()==true)
+                .filter(book -> book.getDateDelivery().plusMonths(periodOfMonths).isBefore(LocalDate.now()))
+                .collect(Collectors.toList());
+        bookList.sort((o1, o2) -> (int) (o1.getPrice()-o2.getPrice()));
+        return bookList;
+    }
+
+    @Override
+    public List<Book> sortByNameListOfStaleBooksNotSold(List<Book> bookList, long periodOfMonths) {
+        bookList = bookRepository.getBooks().stream()
+                .filter(book -> book.getStatusBook()==true)
+                .filter(book -> book.getDateDelivery().plusMonths(periodOfMonths).isBefore(LocalDate.now()))
+                .collect(Collectors.toList());
+            bookList.sort((o1, o2) -> o1.getNameBook().compareTo(o2.getNameBook()));
+        return bookList;
+    }
+
+    @Override
+    public List<Book> sortByDateDeliveryOfStaleBooksNotSold(List<Book> books, long periodOfMonths) {
+        books=bookRepository.getBooks().stream()
+                .filter(book -> book.getStatusBook()==true)
+                .filter(book -> book.getDateDelivery().plusMonths(periodOfMonths).isBefore(LocalDate.now()))
+                .collect(Collectors.toList());
+        books.sort((o1, o2) -> o1.getDateDelivery().compareTo(o2.getDateDelivery()));
+        return books;
+    }
+
+    @Override
+    public void sortBookByDateDelivery(List<Book> bookList) {
+        bookList.sort(Comparator.comparing(Book::getDateDelivery));
+        for (Book book:bookList){
+            System.out.println(book);
+        }
+    }
+
 }

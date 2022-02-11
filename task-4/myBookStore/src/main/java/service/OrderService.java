@@ -107,4 +107,13 @@ public interface OrderService {
      */
     List<Order> getOrderListCompletedByPrice(LocalDate dateStart, LocalDate dateEnd);
 
+    /**
+     * получить сумму заработанных средств за период времени
+     * @param dateStart
+     * @param dateEnd
+     * @return
+     */
+    double getSummEarnedMoneyByPeriod(LocalDate dateStart, LocalDate dateEnd);
+
+
 }

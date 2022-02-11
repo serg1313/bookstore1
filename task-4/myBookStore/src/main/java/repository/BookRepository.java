@@ -28,4 +28,6 @@ public interface BookRepository {
     void addBook(Book book);
 
     void addNewBookInRepository(Book book);
+
+
 }

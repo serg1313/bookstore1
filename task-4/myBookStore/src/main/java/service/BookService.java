@@ -2,6 +2,7 @@ package main.java.service;
 
 import main.java.model.Book;
 
+import java.time.Period;
 import java.util.List;
 
 public interface BookService {
@@ -64,11 +65,6 @@ public interface BookService {
     Book getBookById(long b);
 
     /**
-     * @param book
-     */
-    void addNewBookInRepository(Book book);
-
-    /**
      * получить общее количество книг на складе
      * @return
      */
@@ -80,4 +76,25 @@ public interface BookService {
      */
     void sortingBookById(List<Book> bookList);
 
+    /**
+     * сортировка книг по дате поступления
+     * @param bookList
+     */
+    void sortBookByDateDelivery(List<Book> bookList);
+
+    /**
+     * получить список не проданных книг более 6 мес отсортированных по названию книги
+     * @param bookList
+     * @return
+     */
+    List<Book> sortByNameListOfStaleBooksNotSold (List<Book> bookList, long periodOfMonths);
+
+    /**
+     * получить список не проданных книг более 6 мес отсортированных по цене
+     * @param bookList
+     * @return
+     */
+    List<Book> sortByPriceListOfStaleBooksNotSold(List<Book>bookList, long periodOfMonths);
+
+    List<Book> sortByDateDeliveryOfStaleBooksNotSold(List<Book>books, long periodOfMonths);
 }

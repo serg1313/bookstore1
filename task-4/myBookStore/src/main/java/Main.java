@@ -203,9 +203,12 @@ public class Main {
         System.out.println(bookService.getCountBookByRepository());
 
         // добавить новую книгу на склад
-        //bookRepository.addNewBookInRepository(new Book("Темная башня", "Стивен Кинг", 2012, 1013, true, LocalDate.of(2022, 2, 8)));
+        bookRepository.addNewBookInRepository(new Book("Оно", "Стивен Кинг", 2010, 950, false, LocalDate.of(2022, 2, 2)));
+        bookRepository.addNewBookInRepository(new Book("Темная башня", "Стивен Кинг", 2012, 1013, false, LocalDate.of(2022, 2, 8)));
         System.out.println();
-        //bookRepository.addNewBookInRepository(new Book("Оно", "Стивен Кинг", 2010, 950,true, LocalDate.of(2022,2,10)));
+        for (Book book: bookRepository.getBooks()){
+            System.out.println(book);
+        }
 
         //получить общее количество книг со статусом в наличии
         System.out.println(bookService.getCountBookByRepository());
@@ -213,6 +216,34 @@ public class Main {
 
        // отсортировать книги по id
         bookService.sortingBookById(bookRepository.getBooks());
+        System.out.println();
+
+        // получить общую сумму проданных книг за период
+        double d = orderService.getSummEarnedMoneyByPeriod(LocalDate.of(2021,5,5),LocalDate.now());
+        System.out.println(d);
+        System.out.println();
+
+        // отсортировать книги по дате поступления
+        bookService.sortBookByDateDelivery(bookRepository.getBooks());
+        System.out.println();
+
+        //не проданные книги более 6 мес отсортированные по названию книги
+        for(Book book:bookService.sortByNameListOfStaleBooksNotSold(bookRepository.getBooks(),6)){
+            System.out.println(book);
+        }
+        System.out.println();
+
+        //не проданные книги более 6 мес отсортированные по цене книги
+        for (Book book: bookService.sortByPriceListOfStaleBooksNotSold(bookRepository.getBooks(),6)){
+            System.out.println(book);
+        }
+        System.out.println();
+
+        for (Book book: bookService.sortByDateDeliveryOfStaleBooksNotSold(bookRepository.getBooks(),6)){
+            System.out.println(book);
+        }
+
+
 
 
     }

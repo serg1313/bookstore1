@@ -5,7 +5,7 @@ import main.java.model.Request;
 public interface RequestService {
 
     /**
-     * создатьзапрос на книгу по автору и названию книги
+     * создать запрос на книгу по автору и названию книги
      *
      * @param nameBook
      * @param authorBook
