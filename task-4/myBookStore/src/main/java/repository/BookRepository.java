@@ -27,6 +27,10 @@ public interface BookRepository {
      */
     void addBook(Book book);
 
+    /**
+     * Добавляет новую книгу на склад
+     * @param book
+     */
     void addNewBookInRepository(Book book);
 
 

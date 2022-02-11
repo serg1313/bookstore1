@@ -11,15 +11,15 @@ public class Book extends BaseEntity implements Comparable<Book> {
     private boolean statusBook;
     private LocalDate dateDelivery;
 
-//    public Book(Book book) {
-//        super(id++);
-//        this.nameBook=book.getNameBook();
-//        this.authorBook =book.getAuthorBook();
-//        this.yearOfPublic = book.getYearOfPublic();
-//        this.price = book.getPrice();
-//        this.statusBook = true;
-//        this.dateDelivery=book.getDateDelivery();
-//    }
+    public Book(Book book) {
+        super(id++);
+        this.nameBook=book.getNameBook();
+        this.authorBook =book.getAuthorBook();
+        this.yearOfPublic = book.getYearOfPublic();
+        this.price = book.getPrice();
+        this.statusBook = true;
+        this.dateDelivery=book.getDateDelivery();
+    }
 
     public Book(String nameBook, String authorBook, int yearOfPublic, double price, boolean statusBook, LocalDate dateDelivery) {
         super(id++);

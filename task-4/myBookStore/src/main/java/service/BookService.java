@@ -2,7 +2,6 @@ package main.java.service;
 
 import main.java.model.Book;
 
-import java.time.Period;
 import java.util.List;
 
 public interface BookService {
@@ -96,5 +95,11 @@ public interface BookService {
      */
     List<Book> sortByPriceListOfStaleBooksNotSold(List<Book>bookList, long periodOfMonths);
 
+    /**
+     * получить список не проданных книг более кол-ва месяцев отсортированных по дате поступления
+     * @param books
+     * @param periodOfMonths
+     * @return
+     */
     List<Book> sortByDateDeliveryOfStaleBooksNotSold(List<Book>books, long periodOfMonths);
 }

@@ -25,8 +25,7 @@ public class RequestServiceImpl implements RequestService {
      * @param idBook
      */
     public void createRequestBookById(long idBook) {
-        Request request = null;
-        List<Book> books = null;
+        Request request;
         Book current = bookRepository.getBookById(idBook);
         if (current != null) {
             request = new Request(current, RequestStatus.NEW);

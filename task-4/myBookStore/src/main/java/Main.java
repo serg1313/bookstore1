@@ -239,6 +239,7 @@ public class Main {
         }
         System.out.println();
 
+        //не проданные книги более 6 мес отсортированные по дате поступления
         for (Book book: bookService.sortByDateDeliveryOfStaleBooksNotSold(bookRepository.getBooks(),6)){
             System.out.println(book);
         }
