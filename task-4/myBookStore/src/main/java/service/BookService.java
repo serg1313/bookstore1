@@ -93,15 +93,14 @@ public interface BookService {
      * @param bookList
      * @return
      */
-    List<Book> sortByPriceListOfStaleBooksNotSold(List<Book>bookList, long periodOfMonths);
+    List<Book> sortByPriceListOfStaleBooksNotSold(List<Book>bookList);
 
     /**
-     * получить список не проданных книг более кол-ва месяцев отсортированных по дате поступления
+     * получить список не проданных книг более 6 месяцев отсортированных по дате поступления
      * @param books
-     * @param periodOfMonths
      * @return
      */
-    List<Book> sortByDateDeliveryOfStaleBooksNotSold(List<Book>books, long periodOfMonths);
+    List<Book> sortByDateDeliveryOfStaleBooksNotSold(List<Book>books);
 
     void getDescriptionBook(long id);
 }

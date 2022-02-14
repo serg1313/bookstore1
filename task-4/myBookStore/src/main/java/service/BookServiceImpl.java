@@ -171,10 +171,10 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> sortByPriceListOfStaleBooksNotSold(List<Book> bookList, long periodOfMonths) {
+    public List<Book> sortByPriceListOfStaleBooksNotSold(List<Book> bookList) {
         bookList=bookRepository.getBooks().stream()
                 .filter(book -> book.getStatusBook()==true)
-                .filter(book -> book.getDateDelivery().plusMonths(periodOfMonths).isBefore(LocalDate.now()))
+                .filter(book -> book.getDateDelivery().plusMonths(6).isBefore(LocalDate.now()))
                 .collect(Collectors.toList());
         bookList.sort((o1, o2) -> (int) (o1.getPrice()-o2.getPrice()));
         return bookList;
@@ -191,10 +191,10 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> sortByDateDeliveryOfStaleBooksNotSold(List<Book> books, long periodOfMonths) {
+    public List<Book> sortByDateDeliveryOfStaleBooksNotSold(List<Book> books) {
         books=bookRepository.getBooks().stream()
                 .filter(book -> book.getStatusBook()==true)
-                .filter(book -> book.getDateDelivery().plusMonths(periodOfMonths).isBefore(LocalDate.now()))
+                .filter(book -> book.getDateDelivery().plusMonths(6).isBefore(LocalDate.now()))
                 .collect(Collectors.toList());
         books.sort((o1, o2) -> o1.getDateDelivery().compareTo(o2.getDateDelivery()));
         return books;

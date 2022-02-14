@@ -93,13 +93,13 @@ public class Main {
 
         System.out.println("Задание 7 - Список «залежавшихся» книг не проданы больше чем 6 мес.");
         System.out.println("Сортировка по дате поступления");
-        for (Book book: bookService.sortByDateDeliveryOfStaleBooksNotSold(bookRepository.getBooks(),6)){
+        for (Book book: bookService.sortByDateDeliveryOfStaleBooksNotSold(bookRepository.getBooks())){
             System.out.println(book);
         }
         System.out.println();
 
         System.out.println("Сортировка по цене");
-        for (Book book: bookService.sortByPriceListOfStaleBooksNotSold(bookRepository.getBooks(),6)){
+        for (Book book: bookService.sortByPriceListOfStaleBooksNotSold(bookRepository.getBooks())){
             System.out.println(book);
         }
         System.out.println();
