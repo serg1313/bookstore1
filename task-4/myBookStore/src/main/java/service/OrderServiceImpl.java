@@ -76,7 +76,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-
     public double getPriceOfSoldBooksByOrder(Order order) {
         double summ = 0;
         for (long books : order.getBookId()) {
@@ -85,9 +84,7 @@ public class OrderServiceImpl implements OrderService {
             if (book != null) {
                 summ += book.getPrice();
             }
-            System.out.println(book);
         }
-        System.out.println(summ);
         return summ;
     }
 
@@ -114,12 +111,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void sortOrderByPrice(List<Order> orders) {
-        List<Order> orders1 = orders;
-        orders1.sort((o1, o2) -> (int) (getPriceOfSoldBooksByOrder(o1) - getPriceOfSoldBooksByOrder(o2)));
+    public List<Order> sortOrderByPrice(List<Order> orders) {
+        orders.sort((o1, o2) -> (int) (getPriceOfSoldBooksByOrder(o1) - getPriceOfSoldBooksByOrder(o2)));
         for (Order order : orders) {
             System.out.println("Заказ № " + order.getId() + " сумма заказа: " + getPriceOfSoldBooksByOrder(order));
         }
+        return orders;
     }
 
     @Override
@@ -154,7 +151,7 @@ public class OrderServiceImpl implements OrderService {
                 .filter(order -> order.getCompleteDate().isAfter(dateStart))
                 .filter(order -> order.getCompleteDate().isBefore(dateEnd))
                 .collect(Collectors.toList());
-        result.sort(Comparator.comparing(Order::getCompleteDate));
+        result.sort(Comparator.comparing(order -> order.getCompleteDate()));
         return result;
     }
 
@@ -219,10 +216,20 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> sortOrderByDate(List<Order> orders) {
-        orders.sort((Order o1, Order o2) -> {
-            return o1.getCompleteDate().compareTo(o2.getCompleteDate());
-        });
+        orders.sort(Comparator.comparing(Order::getCompleteDate));
         return orders;
+    }
+
+    @Override
+    public int getCountComletedOrdersByPeriod(LocalDate dateStart, LocalDate dateEnd) {
+        int count = 0;
+        List<Order> result = orderRepository.getOrders().stream()
+                .filter(order -> order.getOrderStatus().equals(OrderStatus.COMPLETED))
+                .filter(order -> order.getCompleteDate().isAfter(dateStart))
+                .filter(order -> order.getCompleteDate().isBefore(dateEnd))
+                .collect(Collectors.toList());
+        count = result.size();
+        return count;
     }
 
 }

@@ -208,4 +208,12 @@ public class BookServiceImpl implements BookService {
         }
     }
 
+    @Override
+    public void getDescriptionBook(long id){
+        Book book = bookRepository.getBookById(id);
+        System.out.println("Автор книги - "+book.getAuthorBook()+ ". Наименование книги - "+book.getNameBook()+
+                ". Цена книги - "+ book.getPrice()+". Дата издание книги - "+book.getYearOfPublic());
+
+    }
+
 }

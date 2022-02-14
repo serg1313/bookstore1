@@ -2,6 +2,8 @@ package main.java.service;
 
 import main.java.model.Request;
 
+import java.util.List;
+
 public interface RequestService {
 
     /**
@@ -48,4 +50,6 @@ public interface RequestService {
      * @return
      */
     int sortRequestBookByName(String nameBook);
+
+    List<Request> sortRequestByCount(List<Request> requestList);
 }

@@ -98,6 +98,12 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
+    public List<Request> sortRequestByCount(List<Request> requestList) {
+
+        return null;
+    }
+
+    @Override
     public int sortRequestBookById(long idBook) {
         int count = 0;
         for (Request request : requestRepository.getRequest()) {
@@ -105,7 +111,6 @@ public class RequestServiceImpl implements RequestService {
                 count++;
             }
         }
-        System.out.println(count);
         return count;
     }
 }

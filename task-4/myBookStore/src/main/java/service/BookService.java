@@ -102,4 +102,6 @@ public interface BookService {
      * @return
      */
     List<Book> sortByDateDeliveryOfStaleBooksNotSold(List<Book>books, long periodOfMonths);
+
+    void getDescriptionBook(long id);
 }

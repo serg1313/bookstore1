@@ -3,7 +3,7 @@ package main.java.model;
 public class Request extends BaseEntity {
     private static long id = 0;
     private Book book;
-    private main.java.model.RequestStatus requestStatus;
+    private RequestStatus requestStatus;
 
     public Request(Book book, main.java.model.RequestStatus requestStatus) {
         super(id++);
