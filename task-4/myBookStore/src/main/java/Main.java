@@ -22,6 +22,23 @@ public class Main {
         RequestService requestService = new RequestServiceImpl(requestRepository, bookRepository);
         BookService bookService = new BookServiceImpl(bookRepository, requestService);
 
+        requestService.createRequestBookById(8);
+        requestService.createRequestBookById(8);
+        requestService.createRequestBookById(8);
+        requestService.createRequestBookById(8);
+        requestService.createRequestBookById(8);
+        requestService.createRequestBookById(4);
+        requestService.createRequestBookById(4);
+        requestService.createRequestBookById(4);
+        requestService.createRequestBookById(3);
+        requestService.createRequestBookById(6);
+        requestService.createRequestBookById(5);
+        requestService.createRequestBookById(5);
+        requestService.createRequestBookById(5);
+        requestService.createRequestBookById(1);
+        requestService.createRequestBookById(1);
+        requestService.createRequestBookById(1);
+
         System.out.println("Задание 1 - Список книг");
         System.out.println("Сортировка книг по названию");
         bookService.sortingBookByName(bookRepository.getBooks());
@@ -52,7 +69,7 @@ public class Main {
 
         System.out.println("Сортировка заказов по цене");
         for(Order order :orderService.sortOrderByPrice(orderRepository.getOrders())){
-            System.out.println(order);
+            System.out.println(order + " Сумма заказа = " + orderService.getPriceOfSoldBooksByOrderId(order.getId()));
         }
         System.out.println();
 
@@ -64,7 +81,10 @@ public class Main {
 
         System.out.println("Задание 3 - Список запросов на книгу");
         System.out.println("сортировка по количеству запросов");
-        System.out.println(requestService.sortRequestBookById(4));
+        requestService.sortRequestByCount();
+        System.out.println();
+        System.out.println("сортировать запросы по имени книги");
+        requestService.sortRequestBookByName();
         System.out.println();
 
         System.out.println("Задание 4 - Список выполненных заказов за период времени");
@@ -110,7 +130,6 @@ public class Main {
 
         System.out.println("Задание 8 - Посмотреть описание книги");
         bookService.getDescriptionBook(6);
-
 
 
 

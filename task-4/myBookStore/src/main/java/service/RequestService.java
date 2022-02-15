@@ -1,5 +1,6 @@
 package main.java.service;
 
+import main.java.model.Book;
 import main.java.model.Request;
 
 import java.util.List;
@@ -46,10 +47,16 @@ public interface RequestService {
 
     /**
      * сортировать запросы по имени книги
-     * @param nameBook
+     * @param
      * @return
      */
-    int sortRequestBookByName(String nameBook);
+    void  sortRequestBookByName();
 
-    List<Request> sortRequestByCount(List<Request> requestList);
+    /**
+     * сортировать по количеству запросов на книгу
+     * @param
+     */
+    void sortRequestByCount();
+
+
 }

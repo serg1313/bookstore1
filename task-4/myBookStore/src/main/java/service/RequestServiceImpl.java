@@ -7,7 +7,11 @@ import main.java.repository.BookRepository;
 import main.java.repository.RequestRepository;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class RequestServiceImpl implements RequestService {
 
@@ -30,6 +34,7 @@ public class RequestServiceImpl implements RequestService {
         if (current != null) {
             request = new Request(current, RequestStatus.NEW);
             requestRepository.getRequest().add(request);
+            current.setRequests(request);
         }
     }
 
@@ -87,20 +92,18 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
-    public int sortRequestBookByName(String nameBook) {
-        int count = 0;
-        for (Request request : requestRepository.getRequest()) {
-            if (request.getBook().getNameBook().equals(nameBook)) {
-                count++;
-            }
-        }
-        return count;
+    public void sortRequestBookByName() {
+        bookRepository.getBooks().stream().filter(book -> book.getRequests().size() > 0)
+                .sorted((o1, o2) -> o1.getNameBook().compareTo(o2.getNameBook()))
+                .forEach(book -> System.out.println("На книгу " + book.getNameBook() + " всего " + book.getRequests().size() + " запросов."));
+
     }
 
     @Override
-    public List<Request> sortRequestByCount(List<Request> requestList) {
-
-        return null;
+    public void sortRequestByCount() {
+        bookRepository.getBooks().stream().filter(book -> book.getRequests().size() > 0)
+                .sorted((o1, o2) -> o2.getRequests().size() - o1.getRequests().size())
+                .forEach(book -> System.out.println("На книгу " + book.getNameBook() + " всего " + book.getRequests().size() + " запросов."));
     }
 
     @Override

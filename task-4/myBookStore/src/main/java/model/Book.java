@@ -1,6 +1,8 @@
 package main.java.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Book extends BaseEntity implements Comparable<Book> {
     private static long id = 0;
@@ -10,6 +12,7 @@ public class Book extends BaseEntity implements Comparable<Book> {
     private double price;
     private boolean statusBook;
     private LocalDate dateDelivery;
+    private List<Request> requests = new ArrayList<>();
 
     public Book(Book book) {
         super(id++);
@@ -83,6 +86,12 @@ public class Book extends BaseEntity implements Comparable<Book> {
         this.dateDelivery = dateDelivery;
     }
 
+    public List<Request> getRequests() {return requests;}
+
+    public void setRequests(Request requests) {
+        this.requests.add(requests);
+    }
+
     @Override
     public int compareTo(Book o) {
 
@@ -98,7 +107,10 @@ public class Book extends BaseEntity implements Comparable<Book> {
                 ", price=" + price +
                 ", statusBook=" + statusBook +
                 ", dateDelivery=" + dateDelivery+
+                ", количество запросов на книгу="+ getRequests().size()+
                 '}';
     }
+
+
 }
 
