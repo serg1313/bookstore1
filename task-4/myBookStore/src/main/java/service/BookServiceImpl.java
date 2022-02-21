@@ -173,7 +173,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> sortByPriceListOfStaleBooksNotSold(List<Book> bookList) {
         bookList=bookRepository.getBooks().stream()
-                .filter(book -> book.getStatusBook()==true)
+                .filter(book -> book.getStatusBook())
                 .filter(book -> book.getDateDelivery().plusMonths(6).isBefore(LocalDate.now()))
                 .collect(Collectors.toList());
         bookList.sort((o1, o2) -> (int) (o1.getPrice()-o2.getPrice()));
